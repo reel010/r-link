@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: r-link
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: r-link
+  template:
+    metadata:
+      labels:
+        app: r-link
+    spec:
+      containers:
+      - name: r-link
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: r-link-volume
+          mountPath: /usr/share/nginx/html
+      volumes:
+      - name: r-link-volume
+        emptyDir: {}
